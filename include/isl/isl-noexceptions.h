@@ -3720,6 +3720,7 @@ public:
   inline val mul(val v2) const;
   inline val mul_ui(unsigned long v2) const;
   inline size_t n_abs_num_chunks(size_t size) const;
+  inline int get_abs_num_chunks(size_t size, void *chunk) const;
   static inline val nan(ctx ctx);
   inline boolean ne(const val &v2) const;
   inline val neg() const;
@@ -19394,6 +19395,12 @@ val val::mul_ui(unsigned long v2) const
 size_t val::n_abs_num_chunks(size_t size) const
 {
   auto res = isl_val_n_abs_num_chunks(get(), size);
+  return res;
+}
+
+int val::get_abs_num_chunks(size_t size, void *chunks) const 
+{
+  auto res = isl_val_get_abs_num_chunks(get(), size, chunks);
   return res;
 }
 
